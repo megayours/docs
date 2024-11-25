@@ -40,4 +40,8 @@ The following sequence diagram illustrates how this system operates:
 
 <figure><img src="../.gitbook/assets/excalidraw.svg" alt=""><figcaption></figcaption></figure>
 
-For more details on configuring the subscription to the Gamma Chain, see [Yours Protocol](../yours-protocol/modules/external.md).
+For more details on configuration and the use of external tokens, see:
+
+{% content-ref url="../yours-protocol/modules/external.md" %}
+[external.md](../yours-protocol/modules/external.md)
+{% endcontent-ref %}
