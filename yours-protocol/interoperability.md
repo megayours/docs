@@ -26,23 +26,11 @@ This means that you can add additional logic and utility to a token by creating 
 
 Modules are also designed to be shared and re-usable. If **Blockchain A** creates a module called `equippables`. Then **Blockchain B** can import that module and re-use the exact same utility on its blockchain.
 
-The way it works is that the equippables module would extend `yours.after_apply_transfer` and populate its own entities if the token supports its module.
+The way it works is that the equippables module would extend `yours.after_apply_transfer` and populate its own entities if the token supports its module. For examples, see:
 
-```kotlin
-// equippables/extensions.rell
-@extend(yours.after_apply_transfer)
-function after_apply_transfer(yours.token, modules: set<name>, properties: map<text, gtv>) {
-  if (not modules.contains("equippables")) return;
-  
-  // Here the dapp module equippables persists the metadata
-  // that it is insterested in according to its needs.
-  val equippable = equippable @? { token } ?: create equippable ( token );
-  val slots = list<name>.from_gtv(attributes.get("slots"));
-  for (slot in slots) {
-    val _ = occupying_slot @? { equippable, slot } ?: create occupying_slot ( equippable, slot );
-  }
-}
-```
+{% content-ref url="getting-started/making-your-tokens-interoperable.md" %}
+[making-your-tokens-interoperable.md](getting-started/making-your-tokens-interoperable.md)
+{% endcontent-ref %}
 
 Yours Protocol will always persist the metadata, so that metadata that was incoming can be transmitted to other blockchains as outgoing, even if the dapp persisted the metadata on its side or not.&#x20;
 

@@ -39,8 +39,9 @@ function populate_metadata(yours.token, modules: set<name>): map<text, gtv>() {
 ```
 
 Two parameters are passed into this function:
-- The underlying token
-- The modules that this token has declared it supports
+
+* The underlying token
+* The modules that this token has declared it supports
 
 You are expected to return an empty map if the token does not support your module; otherwise, you waste compute time looking for utility that does not exist for this specific token.
 
@@ -65,8 +66,8 @@ function after_apply_transfer(yours.token, modules: set<name>, attributes: map<t
 
 It's optional if you want to utilize the metadata that was attached to the token when you receive it from another dapp. No matter if you choose to use the metadata or not, the data is still persisted by Yours Protocol so that it is not lost when sending the token to another dapp blockchain.
 
-## Next Steps
+## Related Documentation
 
-- Learn about [advanced module relationships](../modules/relationships.md)
-- Explore [metadata extensions](../metadata.md)
-- Understand [cross-chain functionality](../interoperability.md)
+{% content-ref url="../interoperability.md" %}
+[interoperability.md](../interoperability.md)
+{% endcontent-ref %}

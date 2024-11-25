@@ -70,9 +70,3 @@ function get_equippable(token: yours.token): equippable? {
 ```
 
 That's all you need to provide utility to a token with Yours Protocol! You can now build additional logic in your dapp that utilizes these entities to provide functionality and dynamic metadata to your tokens.
-
-## Next Steps
-
-- Learn how to [create and mint tokens](creating-and-minting-tokens.md) using your module
-- Explore [module relationships](../modules/relationships.md)
-- Add [metadata extensions](../metadata.md) to your module

@@ -76,14 +76,15 @@ Here both modules are loosely coupled through the token. The benefits are:
 3. **Reusability:** The modules can be shared and used in different contexts
 
 For example, the same item token could be:
-- Equipped by a character
-- Displayed in a marketplace
-- Used in crafting
-- Stored in a vault
+
+* Equipped by a character
+* Displayed in a marketplace
+* Used in crafting
+* Stored in a vault
 
 Each of these features can be implemented as separate modules without direct dependencies.
 
-## Summary
+## Best Practices
 
 We highly recommend using the Indirect Relationship approach. The key features of Yours Protocol are flexibility, modularity, and reusability. It's important for modules to be shareable, which is much easier if each module is self-contained and doesn't directly depend on other modules.
 

@@ -64,7 +64,7 @@ operation mint(name, to_account_id: byte_array) {
   val account = ft4.auth.authenticate();
 
   val spec = yours.token_info(
-    project = yours.project_info("Test Project", account.id),
+    project = yours.project_info("Test Project", chain_context.blockchain_rid),
     collection = "Avatars",
     name,
     modules = [rell.meta(mint).module_name]
@@ -105,10 +105,3 @@ operation equip(
   avatars.equip(avatar, equippable_token);
 }
 ```
-
-## Next Steps
-
-Now that you understand token composability:
-- Learn about [making your tokens interoperable](making-your-tokens-interoperable.md)
-- Explore more [module relationships](../modules/relationships.md)
-- Add [metadata extensions](../metadata.md) to your modules

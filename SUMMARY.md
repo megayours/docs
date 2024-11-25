@@ -1,6 +1,6 @@
 # Table of contents
 
-* [🚀 Framework](README.md)
+* [🚀 MegaYours](README.md)
   * [Extending your on chain data](framework/extending-your-on-chain-data.md)
 * [🌎 Yours Protocol](yours-protocol/README.md)
   * [🤔 Getting Started](yours-protocol/getting-started/README.md)
@@ -9,7 +9,6 @@
     * [Creating & Minting Tokens](yours-protocol/getting-started/creating-and-minting-tokens.md)
     * [Composable Tokens](yours-protocol/getting-started/composable-tokens.md)
     * [Making Your Tokens Interoperable](yours-protocol/getting-started/making-your-tokens-interoperable.md)
-    * [Handling Incoming Tokens](yours-protocol/getting-started/handling-incoming-tokens.md)
   * [💱 Tokens](yours-protocol/tokens/README.md)
     * [Types](yours-protocol/tokens/types.md)
     * [Functions](yours-protocol/tokens/functions.md)

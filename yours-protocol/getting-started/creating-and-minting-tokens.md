@@ -32,7 +32,7 @@ operation create_equippable(
   
   // Create token specification
   val spec = yours.token_specification(
-    project = "Example Dapp",
+    project = yours.project_info("Example Dapp", chain_context.blockchain_rid)
     collection,
     name,
     modules = [rell.meta(equippable).module_name]
@@ -71,22 +71,16 @@ operation mint_equippable(
 
 In Yours Protocol, the distinction between fungible and non-fungible tokens is determined by how you use them:
 
-- **Non-Fungible**: Create unique tokens by minting only one instance
-- **Semi-Fungible**: Create multiple instances of the same token
+* **Non-Fungible**: Create unique tokens by minting only one instance
+* **Semi-Fungible**: Create multiple instances of the same token
 
 For example, a unique piece of art would be minted with amount=1, while a game item might have multiple copies.
 
 ## Best Practices
 
 When creating tokens:
+
 1. Always authenticate operations
 2. Validate input parameters
 3. Consider which modules to attach
 4. Plan your token distribution strategy
-
-## Next Steps
-
-Now that you can create and mint tokens:
-- Learn about [token composability](composable-tokens.md)
-- Explore [interoperability features](making-your-tokens-interoperable.md)
-- Understand [module relationships](../modules/relationships.md)

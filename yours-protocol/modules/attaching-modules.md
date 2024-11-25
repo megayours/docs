@@ -87,12 +87,7 @@ function attach(token: yours.token, name: text) {
 ```
 
 These helper functions ensure that:
+
 1. All required entities are created
 2. Data is initialized correctly
 3. Module attachment is consistent
-
-## Next Steps
-
-- Learn about [module relationships](relationships.md)
-- Understand [metadata handling](../metadata.md)
-- Explore [token composability](../getting-started/composable-tokens.md)
