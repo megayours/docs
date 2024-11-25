@@ -13,6 +13,7 @@
   * [💱 Tokens](yours-protocol/tokens/README.md)
     * [Types](yours-protocol/tokens/types.md)
     * [Functions](yours-protocol/tokens/functions.md)
+    * [Unique Identifier](yours-protocol/tokens/unique-identifier.md)
   * [🧩 Modules](yours-protocol/modules/README.md)
     * [🔌 Attaching Modules](yours-protocol/modules/attaching-modules.md)
     * [🌈 Relationships](yours-protocol/modules/relationships.md)
