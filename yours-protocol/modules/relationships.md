@@ -14,70 +14,74 @@ layout:
 
 # 🌈 Relationships
 
-There are two ways for modules to have relationships.
+When building modules in Yours Protocol, there are different ways to create relationships between them. Let's explore these patterns using a game example where characters can equip items.
 
-1. A Direct Relationship via their entities.
-2. An Indirect Relationship by having two(or more) entities being linked to the same token.
+## Direct Relationships
 
-{% hint style="info" %}
-Direct Relationships are easy to understand and usually suggested for clarity and scalability.
-
-However, this is not true in MegaYours, as the token is used as a universal ID across different chains and modules. You should use the direct method only when really necessary.
-
-Refrain from using direct relationships and instead use Indirect Relationships via the underlying token as much as possible to preserve the flexibility of the token and your module's interoperability and reusability.
-{% endhint %}
-
-In this page we will review the two different approaches and explain why an Indirect Relationship is the preferred approach.
-
-## Direct Relationship
-
-In a direct relationship a module refers to another one directly via an entity. Let's look at an example.
-
-<pre class="language-kotlin"><code class="lang-kotlin"><strong>// students/model.rell
-</strong><strong>entity student {
-</strong><strong>  key yours.token;
-</strong><strong>  name;
-</strong><strong>  email: text;
-</strong><strong>}
-</strong><strong>
-</strong><strong>// student_id_cards/model.rell
-</strong>entity card {
-  key students.student;
-  issue_date: text;
-}
-</code></pre>
-
-The benefits of modelling it like this is:
-
-1. **Clarity and Simplicity:** The relationship between student and card is explicit and clear. It's easy to understand that each card is directly linked to a student. Queries that join student and card entities may be more simple to write because the relationship is direct.
-2. **Data Integrity:** Ensures strong data integrity as the card entity directly references the student entity. This prevents orphaned records and ensures that every card is associated with a valid student.
-
-## Indirect Relationship
-
-Another approach that we can take is to use an Indirect Relationship. Let's look at the same two modules but with a indirect relationship instead.
+A direct relationship is when one module directly references another module's entities:
 
 ```kotlin
-// students/model.rell
-entity student {
+// items/model.rell
+entity item {
   key yours.token;
-  name;
-  email: text;
+  mutable power: integer;
 }
 
-// student_id_cards/model.rell
-entity card {
+// characters/model.rell
+import items;
+
+entity character {
   key yours.token;
-  issue_date: text;
+  mutable experience_points: integer;
+}
+
+entity equipped_item {
+  key character;
+  key item: items.item; // Reference the token through the items module
+  mutable slot: text;
 }
 ```
 
-Here both modules are not aware of each other, but they refer to the same underlying token.&#x20;
+**Avoid doing this!** While this approach works, it creates tight coupling between modules. The character module cannot exist without the items module, making it less reusable.
 
-The benefits of modelling it like this are:
+## Indirect Relationships
 
-1. **Loose Coupling:** The entities are loosely coupled, making the system more flexible. Changes in one entity do not directly impact the other.
-2. **Modularity:** Each entity can be managed independently, which is beneficial for large systems. This can simplify maintenance and scalability.
-3. **Reusability:** The yours.token can be reused across different modules, making it easier to link various entities without direct dependencies.
+A better approach is to have modules reference tokens independently:
+
+```kotlin
+// items/model.rell
+entity item {
+  key yours.token;
+  mutable experience_points: integer;
+}
+
+// characters/model.rell
+entity character {
+  key yours.token;
+  key name;
+  mutable level: integer;
+}
+
+entity equipped_item {
+  key character;
+  key item: yours.token; // Reference the underlying token and therefore create an indirect relationship
+  mutable slot: text;
+}
+```
+
+Here both modules are loosely coupled through the token. The benefits are:
+
+1. **Loose Coupling:** The character module doesn't need to know about equippable entities
+2. **Modularity:** Each module can be used independently
+3. **Reusability:** The modules can be shared and used in different contexts
+
+For example, the same item token could be:
+- Equipped by a character
+- Displayed in a marketplace
+- Used in crafting
+- Stored in a vault
+
+Each of these features can be implemented as separate modules without direct dependencies.
 
 ## Summary
 

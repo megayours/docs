@@ -14,37 +14,85 @@ layout:
 
 # 🔌 Attaching Modules
 
-After you have built your modules, it is crucial that you instruct Yours Protocol that you want a token to implement a module. There are two ways to do this, at token creation time, but also later when the token already has existed.
+After creating your modules, you need to tell Yours Protocol which modules a token should implement. This can be done either at token creation time or later when the token already exists.
 
 ## Token Creation
 
-```kotlin
-val spec = yours.token_specification(
-  project = "Example Dapp",
-  collection,
-  name,
-  modules = ["grids", "lands"]
-);
+When creating a new token, specify which modules it should support:
 
-val token = yours.create_token(spec);
-val grid = create grids.grid(token, width, height);
-val land = create lands.land(token, grid);
+```kotlin
+// Create a character that can equip items
+operation create_character(name: text) {
+  val account = ft4.auth.authenticate();
+  
+  // Create token with character module
+  val spec = yours.token_specification(
+    project = yours.project_info("Game Example", chain_context.blockchain_rid),
+    collection = "Characters",
+    name,
+    modules = ["characters"]  // Specify modules at creation
+  );
+
+  val token = yours.create_token(spec);
+  characters.attach(token, name);  // Initialize character data
+}
+
+// Create an equippable item
+operation create_item(name: text, power: integer) {
+  val account = ft4.auth.authenticate();
+  
+  // Create token with item module
+  val spec = yours.token_specification(
+    project = yours.project_info("Game Example", chain_context.blockchain_rid),
+    collection = "Items",
+    name,
+    modules = ["items"]  // Specify modules at creation
+  );
+
+  val token = yours.create_token(spec);
+  items.attach(token, power);  // Initialize item data
+}
 ```
 
-## Existing Token
+## Adding Modules Later
+
+You can also add module support to existing tokens:
 
 ```kotlin
-yours.attach_module(token, "placeables");
+// Make an existing token equippable
+operation make_item(token: yours.token, power: integer) {
+  val account = ft4.auth.authenticate();
+  
+  // Add items module to token
+  items.attach(token, power);
+}
 ```
 
 ## Best Practices
 
-In your module, provide a attach module that the caller can call which does all the logic which is needed in order to fully attach.
+Provide helper functions in your modules to handle the attachment process:
 
 ```kotlin
-// lands/functions.rell
-function attach(yours.token, width: integer, height: integer) {
-  val grid = create grid(token, width, height);
-  val land = create land(token, grid);
+// items/functions.rell
+function attach(token: yours.token, power: integer) {
+  // Initialize item data
+  create item(token, power);
+}
+
+// characters/functions.rell
+function attach(token: yours.token, name: text) {
+  // Initialize character data
+  create character(token, name, experience_points = 0);
 }
 ```
+
+These helper functions ensure that:
+1. All required entities are created
+2. Data is initialized correctly
+3. Module attachment is consistent
+
+## Next Steps
+
+- Learn about [module relationships](relationships.md)
+- Understand [metadata handling](../metadata.md)
+- Explore [token composability](../getting-started/composable-tokens.md)
