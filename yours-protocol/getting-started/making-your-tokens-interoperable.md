@@ -22,12 +22,12 @@ When we transfer this token from our dapp into another dapp, we want this metada
 
 ```kotlin
 @extend(yours.populate_metadata)
-function populate_metadata(yours.token, modules: set<name>): map<text, gtv>() {
+function populate_metadata(yours.token, modules: set<name>): map<text, gtv> {
   val metadata = map<text, gtv>();
   if (not modules.contains(rell.meta(equippable).module_name)) return metadata;
 
   val equippable = equippable @? { token };
-  if (equippable == null) return null;
+  if (equippable == null) return metadata;
 
   val slots = occupying_slot @* { .equippable.token == token } ( .name );
   if (not slots.empty()) {
