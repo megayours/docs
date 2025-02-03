@@ -17,6 +17,7 @@
     * [🔌 Attaching Modules](yours-protocol/modules/attaching-modules.md)
     * [🌈 Relationships](yours-protocol/modules/relationships.md)
     * [🎭 ERC1155](yours-protocol/modules/erc1155.md)
+    * [📚 Declaration](yours-protocol/modules/declaration.md)
     * [👾 External](yours-protocol/modules/external.md)
   * [📄 Metadata](yours-protocol/metadata.md)
   * [🔗 Interoperability](yours-protocol/interoperability.md)

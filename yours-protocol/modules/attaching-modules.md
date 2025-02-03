@@ -70,17 +70,21 @@ operation make_item(token: yours.token, power: integer) {
 
 ## Best Practices
 
+### Attachment
+
 Provide helper functions in your modules to handle the attachment process:
 
 ```kotlin
 // items/functions.rell
 function attach(token: yours.token, power: integer) {
   // Initialize item data
+  yours.attach_module(token, "items");
   create item(token, power);
 }
 
 // characters/functions.rell
 function attach(token: yours.token, name: text) {
+  yours.attach_module(token, "characters");
   // Initialize character data
   create character(token, name, experience_points = 0);
 }
@@ -91,3 +95,8 @@ These helper functions ensure that:
 1. All required entities are created
 2. Data is initialized correctly
 3. Module attachment is consistent
+
+### Declaring Module
+
+
+
