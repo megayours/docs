@@ -22,9 +22,13 @@ When we transfer this token from our dapp into another dapp, we want this metada
 
 ```kotlin
 @extend(yours.populate_metadata)
-function populate_metadata(yours.token, modules: set<name>): map<text, gtv> {
+function populate_metadata(yours.token, modules: set<name>): map<text, map<text, gtv>> {
   val metadata = map<text, gtv>();
-  if (not modules.contains(rell.meta(equippable).module_name)) return metadata;
+  val module_name = rell.meta(equippable).module_name;
+
+  if (not modules.contains(module_name)) {
+    return yours.provide_module_metadata(module_name, metadata);
+  }
 
   val equippable = equippable @? { token };
   if (equippable == null) return metadata;
@@ -34,7 +38,7 @@ function populate_metadata(yours.token, modules: set<name>): map<text, gtv> {
     metadata.put("slots", slots.to_gtv());
   }
 
-  return metadata;
+  return yours.provide_module_metadata(module_name, metadata);
 }
 ```
 
@@ -45,7 +49,7 @@ Two parameters are passed into this function:
 
 You are expected to return an empty map if the token does not support your module; otherwise, you waste compute time looking for utility that does not exist for this specific token.
 
-This function returns a `map<text, gtv>`. Everything you put into this map will be included in the token's metadata under the attributes property. This is consistent and interoperable with the ERC721 Metadata Standard.
+This function returns a `map<text, map<text, gtv>>`. However, you only need to provide a `module_name` and a `map<text, gtv>` to and return the result of `provide_module_metadata`. Everything you put into this map will be included in the token's metadata under the attributes property.
 
 ## Handling Incoming Tokens
 
@@ -53,11 +57,13 @@ When receiving tokens from other dapps, you can choose to utilize their metadata
 
 ```kotlin
 @extend(yours.after_apply_transfer)
-function after_apply_transfer(yours.token, modules: set<name>, attributes: map<text, gtv>) {
-  if (not modules.contains(rell.meta(equippable).module_name)) return;
+function after_apply_transfer(yours.token, modules: set<name>, properties: map<text, gtv>) {
+  val module_name = rell.meta(equippable).module_name;
+  if (not modules.contains(module_name)) return;
+  val equippables_properties = yours.parse_module_metadata(module_name, properties);
 
   val equippable = equippable @? { token } ?: create equippable(token);
-  val slots = list<text>.from_gtv(attributes.get("slots"));
+  val slots = list<text>.from_gtv(equippables_properties.get("slots"));
   for (slot in slots) {
     val _ = occupying_slot @? { equippable, slot } ?: create occupying_slot(equippable, slot);
   }
