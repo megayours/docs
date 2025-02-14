@@ -21,7 +21,7 @@ Not every dapp needs minting support - you might want to only interact with exis
 To create a new token, you'll need to define its specifications and attach any modules you want it to support.
 
 ```kotlin
-// equippables/operations.rell
+// modules/equippables/operations.rell
 operation create_equippable(
   collection: text,
   name: text,

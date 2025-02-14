@@ -75,14 +75,14 @@ operation make_item(token: yours.token, power: integer) {
 Provide helper functions in your modules to handle the attachment process:
 
 ```kotlin
-// items/functions.rell
+// modules/items/functions.rell
 function attach(token: yours.token, power: integer) {
   // Initialize item data
   yours.attach_module(token, "items");
   create item(token, power);
 }
 
-// characters/functions.rell
+// modules/characters/functions.rell
 function attach(token: yours.token, name: text) {
   yours.attach_module(token, "characters");
   // Initialize character data

@@ -21,13 +21,13 @@ When building modules in Yours Protocol, there are different ways to create rela
 A direct relationship is when one module directly references another module's entities:
 
 ```kotlin
-// items/model.rell
+// modules/items/model.rell
 entity item {
   key yours.token;
   mutable power: integer;
 }
 
-// characters/model.rell
+// modules/characters/model.rell
 import items;
 
 entity character {
@@ -49,13 +49,13 @@ entity equipped_item {
 A better approach is to have modules reference tokens independently:
 
 ```kotlin
-// items/model.rell
+// modules/items/model.rell
 entity item {
   key yours.token;
   mutable experience_points: integer;
 }
 
-// characters/model.rell
+// modules/characters/model.rell
 entity character {
   key yours.token;
   key name;

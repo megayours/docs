@@ -19,7 +19,7 @@ Due to the fact that it up to you as a dapp developer to decide how you persist 
 Let's extend our application with a second module, an `avatars` module.
 
 ```kotlin
-// avatars/module.rell
+// modules/avatars/module.rell
 module;
 
 import equippables; // import our first module
@@ -27,7 +27,7 @@ import lib.yours;
 ```
 
 ```kotlin
-// avatars/model.rell
+// modules/avatars/model.rell
 entity avatar {
   key yours.token; // the avatar itself is a token as well
 }
@@ -38,7 +38,7 @@ entity equipment {
 ```
 
 ```kotlin
-// avatars/functions.rell
+// modules/avatars/functions.rell
 function attach(token: yours.token) {
   yours.attach_module(token, rell.meta(avatar).module_name);
   create avatar(token);
@@ -59,7 +59,7 @@ This logic above allows an avatar to equip 1 token of each equippable. But not t
 Now we can mint this token. I want an avatar to be a NFT, which means we will create a new token each time we create an avatar.
 
 ```kotlin
-// avatars/operations.rell
+// modules/avatars/operations.rell
 operation mint(name, to_account_id: byte_array) {
   val account = ft4.auth.authenticate();
 
@@ -83,7 +83,7 @@ operation mint(name, to_account_id: byte_array) {
 Now that we have both modules set up, we can create operations to equip items:
 
 ```kotlin
-// avatars/operations.rell
+// modules/avatars/operations.rell
 operation equip(
   avatar_uid: byte_array,
   equippable_uid: byte_array

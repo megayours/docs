@@ -23,7 +23,7 @@ We use modules in Yours Protocol as utility providers for tokens. Let's create a
 First, create your module file:
 
 ```kotlin
-// equippables/module.rell
+// modules/equippables/module.rell
 module;
 
 import lib.yours;
@@ -34,7 +34,7 @@ import lib.yours;
 Next, define the persistence layer for your utility. Here you have complete freedom as a developer to decide what metadata you want to associate with the token and how you want to persist it.
 
 ```kotlin
-// equippables/model.rell
+// modules/equippables/model.rell
 entity equippable {
   key yours.token;  // Reference to the underlying token
 }
@@ -51,7 +51,7 @@ It's recommended to create an entity that references the underlying token with t
 Add some basic functionality by attaching your module to the token:
 
 ```kotlin
-// equippables/functions.rell
+// modules/equippables/functions.rell
 function attach(token: yours.token, slots: list<text>) {
   yours.attach_module(token, rell.meta(equippable).module_name);
   val equippable = create equippable(token);

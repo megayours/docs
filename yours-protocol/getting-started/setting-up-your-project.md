@@ -18,12 +18,14 @@ layout:
 ## Project Structure
 
 A typical Yours Protocol project follows the standard Chromia project structure:
+
 ```
 your-dapp/
 ├── chromia.yml           # Project configuration
 ├── src/
-│   ├── your_module_a/    # Your custom modules
-│   ├── your_module_b/    # Your custom modules
+│   ├── modules/
+│   │   ├── your_module_a/    # Your custom modules
+│   │   ├── your_module_b/    # Your custom modules
 │   ├── libs/             # Your dependencies
 │   │   ├── ft4/          # FT4 library
 │   │   ├── iccf/         # ICCF library
@@ -71,6 +73,7 @@ chr install
 ## Next Steps
 
 With your project set up and dependencies installed, you're ready to:
+
 1. [Create your first module](creating-your-first-module.md)
 2. [Create and mint tokens](creating-and-minting-tokens.md)
 3. [Make your tokens interoperable](making-your-tokens-interoperable.md)
