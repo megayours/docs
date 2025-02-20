@@ -29,8 +29,8 @@ Before you begin, ensure you have:
 
 * Basic understanding of blockchain development
 * Familiarity with [Rell programming language](https://docs.chromia.com/rell/rell-intro)
-* [Chromia CLI](https://docs.chromia.com/intro/installation/cli-installation) set up
-* An IDE for working with Rell, such as [VSCode](https://docs.chromia.com/intro/installation/vscode-installation) or [JetBrains](https://docs.chromia.com/intro/installation/intellij-installation)
+* [Chromia CLI](https://docs.chromia.com/intro/getting-started/installation/cli-installation#installation-via-package-managers-optional) set up
+* An IDE for working with Rell, such as [VSCode](https://docs.chromia.com/intro/getting-started/installation/vscode-installation) or [JetBrains](https://docs.chromia.com/intro/getting-started/installation/intellij-installation) or Cursor (on which you can use the same guide of VSCode)
 
 ## Quick Start
 

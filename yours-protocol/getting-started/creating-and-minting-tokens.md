@@ -20,37 +20,58 @@ Not every dapp needs minting support - you might want to only interact with exis
 
 To create a new token, you'll need to define its specifications and attach any modules you want it to support.
 
+To do this, first let's import ft4 to the module
+
+
+
+```javascript
+module;
+
+import lib.yours;
+
+namespace ft4 { // <-- Add FT4
+  import lib.ft4.accounts;
+  import lib.ft4.auth;
+}
+```
+
+Then the create token operation
+
 ```kotlin
 // modules/equippables/operations.rell
 operation create_equippable(
-  collection: text,
-  name: text,
-  slots: list<text>
+    collection: text,
+    name: text,
+    slots: list<text>
 ) {
-  // Authenticate the caller
-  val account = ft4.auth.authenticate();
-  
-  // Create token specification
-  val spec = yours.token_specification(
-    project = yours.project_info("Example Dapp", chain_context.blockchain_rid)
-    collection,
-    name,
-    modules = [rell.meta(equippable).module_name]
-  );
+    // Authenticate the caller
+    ft4.auth.authenticate();
+    
+    // Create token specification
+    val spec = yours.token_info(
+        project = yours.project_info("Example Dapp", chain_context.blockchain_rid),
+        collection,
+        type = yours.token_type.yours,
+        name,
+        modules = [rell.meta(equippable).module_name]
+    );
 
-  // Create the token
-  val token = yours.create_token(spec);
-  
-  // Attach our equippable module
-  equippables.attach(token, slots);
+    // Create the token
+    val token = yours.create_token(spec);
+    
+    // Attach our equippable module
+    attach(token, slots);
 }
 ```
+
+Note, in this example we did not check the authentication of the account.
 
 ## Minting Tokens
 
 After creating a token definition, you can mint instances of it to specific accounts:
 
 ```kotlin
+// modules/equippables/operations.rell
 operation mint_equippable(
   token: yours.token,
   to_account_id: byte_array,
