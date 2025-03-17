@@ -2,6 +2,8 @@
 
 * [🚀 MegaYours](README.md)
   * [Extending your on chain data](framework/extending-your-on-chain-data.md)
+* [💾 MegaData](megadata/README.md)
+  * [Solana Integration](megadata/solana-integration.md)
 * [🌎 Yours Protocol](yours-protocol/README.md)
   * [🤔 Getting Started](yours-protocol/getting-started/README.md)
     * [Setting up Your Project](yours-protocol/getting-started/setting-up-your-project.md)
@@ -27,9 +29,5 @@
     * [Prototype](yours-protocol/migration-from-originals/prototype.md)
 * [👾 Import Existing Tokens from any Chain](import-existing-tokens-from-any-chain/README.md)
   * [🛰️ Gamma Chain](import-existing-tokens-from-any-chain/gamma-chain.md)
-* [💁 Contributing](contributing/README.md)
-  * [💻 Technical Architecture](contributing/technical-architecture/README.md)
-    * [Components](contributing/technical-architecture/components.md)
-    * [Workflows](contributing/technical-architecture/workflows.md)
 * [🔗 Links](links/README.md)
   * [Github: Yours Protocol](https://github.com/megayours/yours-protocol/tree/main)
