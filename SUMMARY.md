@@ -2,7 +2,7 @@
 
 * [🚀 MegaYours](README.md)
   * [Extending your on chain data](framework/extending-your-on-chain-data.md)
-* [💾 MegaData](megadata/README.md)
+* [💾 Megadata](megadata/README.md)
   * [Solana Integration](megadata/solana-integration.md)
 * [🌎 Yours Protocol](yours-protocol/README.md)
   * [🤔 Getting Started](yours-protocol/getting-started/README.md)
