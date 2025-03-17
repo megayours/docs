@@ -2,9 +2,7 @@
 
 ### Programs
 
-| Network | Program ID                                  |
-| ------- | ------------------------------------------- |
-| devnet  | yteDZqmquhCJwDKumf35uPqcknDn87xgcDLqdxjAigq |
+<table><thead><tr><th width="262.9921875">Network</th><th>Program ID</th></tr></thead><tbody><tr><td>devnet </td><td>yteDZqmquhCJwDKumf35uPqcknDn87xgcDLqdxjAigq</td></tr></tbody></table>
 
 ### SDK
 
