@@ -20,3 +20,4 @@ flowchart LR
 ## Links
 
 * [Github](https://github.com/megayours/megadata-sdk)
+* [NPM](https://www.npmjs.com/package/@megayours/megadata)
