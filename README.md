@@ -16,7 +16,7 @@ layout:
 
 ## Overview
 
-MegaYours is an advanced blockchain framework that revolutionizes digital asset management through on-chain metadata, dynamic token evolution, and seamless cross-chain interoperability. At its core lies Yours Protocol, our token standard built on Chromia's relational blockchain.
+MegaYours is a modular, high-perfomance blockchain framework that revolutionizes digital asset management through on-chain metadata, dynamic token evolution, and seamless cross-chain interoperability. At its core lies Yours Protocol.
 
 ## Why MegaYours?
 
@@ -44,7 +44,7 @@ Our foundation for next-generation digital assets:
 
 * Create dynamic tokens with on-chain metadata
 * Build composable token systems
-* Implement cross-chain functionality
+* Implement cross-chain functionality by extending tokens minted on any chain
 * Develop custom modules for extended capabilities
 
 {% content-ref url="import-existing-tokens-from-any-chain/" %}
@@ -56,7 +56,7 @@ Seamlessly integrate existing blockchain assets:
 * Non-custodial token integration
 * Support for major EVM chains
 * Real-time synchronization
-* Zero-deposit architecture: we understand the pain of depositing your valuable assets to random contracts in order to enable utility, so we made it so you don't have to.
+* Bridgeless architecture: we understand the pain of depositing or locking your valuable assets to contracts in order to enable utility, so we made it so you don't have to.
 
 {% content-ref url="yours-protocol/getting-started/" %}
 [getting-started](yours-protocol/getting-started/)
